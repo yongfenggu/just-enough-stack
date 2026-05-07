@@ -1,6 +1,6 @@
 # Just Enough Stack
 
-[English](README.md) | 中文
+[English](README.md) | [한국어](README.ko.md) | 中文 | [日本語](README.ja.md) | [Español](README.es.md) | [Tiếng Việt](README.vi.md) | [Português](README.pt.md)
 
 一个面向小型应用的轻量全栈脚手架，基于 FastAPI、Vue 3 和 SQLite。
 它提供了开箱即用的认证、权限控制，以及一个任务 CRUD 示例，方便你快速起步。
@@ -76,14 +76,14 @@ just-enough-stack/
 ├── je_stack/      # 可复用后端包
 ├── web/           # Vue 3 前端
 ├── start-dev.py   # 跨平台启动脚本
-└── README.zh.md   # 中文说明
+└── README.*.md    # 多语言 README
 ```
 
 ## 文档
 
 - [English README](README.md)
-- [迁移完成说明](MIGRATION_COMPLETE.md)
-- [后端迁移说明](app/MIGRATION.md)
+- [Migration Complete Notes](MIGRATION_COMPLETE.md)
+- [Backend Migration Notes](app/MIGRATION.md)
 
 ## License
 
