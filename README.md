@@ -1,90 +1,131 @@
 # Just Enough Stack
 
-English | [中文](README.zh.md)
+**轻量级全栈开发框架**，快速搭建微小型应用的脚手架，基于 **FastAPI + Vue3 + SQLite**，提供完整的用户认证、权限管理和 CRUD 示例。
 
-A lightweight full-stack starter for small apps, built with FastAPI, Vue 3, and SQLite.
-It gives you a working base with authentication, role-based permissions, and a task CRUD example.
-
-## Features
-
-- FastAPI backend with JWT authentication
-- Vue 3 + TypeScript frontend
-- Role-based access control with multiple user roles
-- Task CRUD example with status and priority fields
-- SQLite-based local development setup
-- One-command dev startup script
-
-## Tech Stack
-
-- Backend: FastAPI, SQLAlchemy, Pydantic, JWT
-- Frontend: Vue 3, TypeScript, Vite, Element Plus, Pinia
-- Database: SQLite
-- Tooling: uv, npm
-
-## Quick Start
+## ⚡ 快速开始
 
 ```bash
-git clone https://github.com/yongfenggu/just-enough-stack.git
+git clone https://github.com/GGyongfeng/just-enough-stack.git
 cd just-enough-stack
-python3 start-dev.py
+python start-dev.py
 ```
 
-The startup script will:
+脚本会自动：
+- ✅ 检查依赖工具（Python, Node.js, npm, uv）
+- ✅ 安装后端和前端依赖
+- ✅ 启动后端和前端服务
+- ✅ 自动打开浏览器访问 http://localhost:3000
 
-- check required tools
-- install backend and frontend dependencies when needed
-- create `web/.env` from `web/.env.example` when missing
-- start backend and frontend services
-- open the frontend in your browser
-
-## Requirements
-
+### 环境要求
 - Python 3.12+
 - Node.js 18+
-- npm
-- [uv](https://astral.sh/uv)
+- npm 或 yarn
+- [uv](https://astral.sh/uv) - Python 包管理工具
 
-## Manual Start
+**安装 uv:**
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-Backend:
+# Windows
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 
+## 技术栈
+
+### 后端
+- **FastAPI** - 现代化 Python Web 框架
+- **SQLAlchemy** - ORM 数据库工具
+- **Pydantic** - 数据验证与 API Schema（单一事实源 SSOT）
+- **JWT** - 用户认证
+
+### 前端
+- **Vue3 + TypeScript** - 类型安全的前端框架
+- **Vite** - 极速构建工具
+- **Element Plus** - UI 组件库
+- **Pinia** - 状态管理
+
+## 核心功能
+
+### 1. 用户认证与权限
+- ✅ 注册/登录（JWT）
+- ✅ RBAC 权限控制（Guest/User/Admin/Super Admin）
+- ✅ 用户管理
+
+### 2. CRUD 示例（任务管理）
+- ✅ 创建、查看、更新、删除
+- ✅ 状态跟踪（待处理/进行中/已完成/已取消）
+- ✅ 优先级管理（低/中/高）
+- ✅ 分页、筛选
+
+### 3. 开发者友好
+- ✅ RESTful API 设计
+- ✅ 自动 API 文档（Swagger）
+- 🚧 OpenAPI → TypeScript 类型自动生成（重构后）
+
+### 手动启动（可选）
+
+如果不使用启动脚本，可以分别启动：
+
+**后端：**
 ```bash
 cd app
 uv sync
 uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Frontend:
-
+**前端：**
 ```bash
 cd web
 npm install
 npm run dev
 ```
 
-## Default URLs
+### 访问地址
+- 🌐 前端: http://localhost:3000
+- 🔌 后端 API: http://localhost:8000
+- 📚 API 文档: http://localhost:8000/docs
 
-- Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:8000`
-- API Docs: `http://localhost:8000/docs`
-
-## Project Structure
-
-```text
-just-enough-stack/
-├── app/           # FastAPI example app
-├── je_stack/      # reusable backend package
-├── web/           # Vue 3 frontend
-├── start-dev.py   # cross-platform startup script
-└── README.zh.md   # Chinese README
+## API 响应格式
+```json
+{
+  "success": true,
+  "message": "操作成功",
+  "data": { /* 业务数据 */ }
+}
 ```
 
-## Docs
+## 开发指南
 
-- [中文说明](README.zh.md)
-- [Migration Complete Notes](MIGRATION_COMPLETE.md)
-- [Backend Migration Notes](app/MIGRATION.md)
+### 添加新功能（当前）
+1. 后端：定义 ORM → DAO → Pydantic Schema → API 端点
+2. 前端：手写 TypeScript 类型 → API 客户端 → Store → 页面
 
-## License
+### 添加新功能（重构后）
+1. 后端：定义 Pydantic Schema → 其他同上
+2. 前端：运行 `npm run generate-types` → 直接使用生成的类型
 
-MIT
+### 权限控制
+```python
+from src.middleware.auth import check_user_permission
+
+@router.post("/tasks")
+async def create_task(
+    current_user = Depends(check_user_permission())
+):
+    pass  # 仅登录用户可访问
+```
+
+## 数据库
+首次启动自动创建表。如需重置：
+```bash
+rm backend/app.db
+```
+## 许可证
+MIT License
+
+## 贡献
+欢迎 [Issues](../../issues) 和 [PRs](../../pulls)！
+
+---
+**Just Enough Stack** - 不多不少，刚刚好 🚀
