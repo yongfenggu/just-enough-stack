@@ -1,6 +1,6 @@
 # Just Enough Stack
 
-English | [한국어](README.ko.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [Español](README.es.md) | [Tiếng Việt](README.vi.md) | [Português](README.pt.md)
+English | [中文](README.zh.md)
 
 A lightweight full-stack starter for small apps, built with FastAPI, Vue 3, and SQLite.
 It gives you a working base with authentication, role-based permissions, and a task CRUD example.
@@ -76,7 +76,7 @@ just-enough-stack/
 ├── je_stack/      # reusable backend package
 ├── web/           # Vue 3 frontend
 ├── start-dev.py   # cross-platform startup script
-└── README.*.md    # localized READMEs
+└── README.zh.md   # Chinese README
 ```
 
 ## Docs
