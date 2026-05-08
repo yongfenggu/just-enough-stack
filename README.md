@@ -1,11 +1,22 @@
-# Just Enough Stack
+<p align="center">
+  <img src="docs/banner.svg" alt="Just Enough Stack" />
+</p>
+
+<p align="center">
+  中文 | <a href="README.en.md">English</a> | <a href="README.ko.md">한국어</a> | <a href="README.ja.md">日本語</a> | <a href="README.es.md">Español</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/yongfenggu/just-enough-stack/stargazers"><img src="https://img.shields.io/github/stars/yongfenggu/just-enough-stack" alt="GitHub Stars" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/yongfenggu/just-enough-stack" alt="License: MIT" /></a>
+</p>
 
 **轻量级全栈开发框架**，快速搭建微小型应用的脚手架，基于 **FastAPI + Vue3 + SQLite**，提供完整的用户认证、权限管理和 CRUD 示例。
 
 ## ⚡ 快速开始
 
 ```bash
-git clone https://github.com/GGyongfeng/just-enough-stack.git
+git clone https://github.com/yongfenggu/just-enough-stack.git
 cd just-enough-stack
 python start-dev.py
 ```
