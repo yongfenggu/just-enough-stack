@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  中文 | <a href="README.en.md">English</a> | <a href="README.ko.md">한국어</a> | <a href="README.ja.md">日本語</a> | <a href="README.es.md">Español</a>
+  English | <a href="README.zh.md">中文</a> | <a href="README.ko.md">한국어</a> | <a href="README.ja.md">日本語</a> | <a href="README.es.md">Español</a>
 </p>
 
 <p align="center">
@@ -11,9 +11,9 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/yongfenggu/just-enough-stack" alt="License: MIT" /></a>
 </p>
 
-**轻量级全栈开发框架**，快速搭建微小型应用的脚手架，基于 **FastAPI + Vue3 + SQLite**，提供完整的用户认证、权限管理和 CRUD 示例。
+A **lightweight full-stack scaffold** for building small apps quickly, based on **FastAPI + Vue3 + SQLite** with built-in authentication, RBAC, and CRUD examples.
 
-## ⚡ 快速开始
+## Quick Start
 
 ```bash
 git clone https://github.com/yongfenggu/just-enough-stack.git
@@ -21,19 +21,19 @@ cd just-enough-stack
 python start-dev.py
 ```
 
-脚本会自动：
-- ✅ 检查依赖工具（Python, Node.js, npm, uv）
-- ✅ 安装后端和前端依赖
-- ✅ 启动后端和前端服务
-- ✅ 自动打开浏览器访问 http://localhost:3000
+The script will automatically:
+- Check dependencies (Python, Node.js, npm, uv)
+- Install backend and frontend packages
+- Start both servers
+- Open http://localhost:3000 in your browser
 
-### 环境要求
+### Requirements
 - Python 3.12+
 - Node.js 18+
-- npm 或 yarn
-- [uv](https://astral.sh/uv) - Python 包管理工具
+- npm or yarn
+- [uv](https://astral.sh/uv) - Python package manager
 
-**安装 uv:**
+**Install uv:**
 ```bash
 # macOS / Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -42,81 +42,74 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-## 技术栈
+## Tech Stack
 
-### 后端
-- **FastAPI** - 现代化 Python Web 框架
-- **SQLAlchemy** - ORM 数据库工具
-- **Pydantic** - 数据验证与 API Schema（单一事实源 SSOT）
-- **JWT** - 用户认证
+### Backend
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - ORM
+- **Pydantic** - Validation & API schema (SSOT)
+- **JWT** - Authentication
 
-### 前端
-- **Vue3 + TypeScript** - 类型安全的前端框架
-- **Vite** - 极速构建工具
-- **Element Plus** - UI 组件库
-- **Pinia** - 状态管理
+### Frontend
+- **Vue3 + TypeScript** - Type-safe UI framework
+- **Vite** - Build tool
+- **Element Plus** - UI components
+- **Pinia** - State management
 
-## 核心功能
+## Features
 
-### 1. 用户认证与权限
-- ✅ 注册/登录（JWT）
-- ✅ RBAC 权限控制（Guest/User/Admin/Super Admin）
-- ✅ 用户管理
+### Authentication & Authorization
+- Register / Login (JWT)
+- RBAC (Guest / User / Admin / Super Admin)
+- User management
 
-### 2. CRUD 示例（任务管理）
-- ✅ 创建、查看、更新、删除
-- ✅ 状态跟踪（待处理/进行中/已完成/已取消）
-- ✅ 优先级管理（低/中/高）
-- ✅ 分页、筛选
+### CRUD Example (Task Manager)
+- Create, read, update, delete
+- Status tracking (Pending / In Progress / Done / Cancelled)
+- Priority levels (Low / Medium / High)
+- Pagination & filtering
 
-### 3. 开发者友好
-- ✅ RESTful API 设计
-- ✅ 自动 API 文档（Swagger）
-- 🚧 OpenAPI → TypeScript 类型自动生成（重构后）
+### Developer Friendly
+- RESTful API design
+- Auto-generated API docs (Swagger)
 
-### 手动启动（可选）
+### Manual Start (Optional)
 
-如果不使用启动脚本，可以分别启动：
-
-**后端：**
+**Backend:**
 ```bash
 cd app
 uv sync
 uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**前端：**
+**Frontend:**
 ```bash
 cd web
 npm install
 npm run dev
 ```
 
-### 访问地址
-- 🌐 前端: http://localhost:3000
-- 🔌 后端 API: http://localhost:8000
-- 📚 API 文档: http://localhost:8000/docs
+### URLs
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
 
-## API 响应格式
+## API Response Format
 ```json
 {
   "success": true,
-  "message": "操作成功",
-  "data": { /* 业务数据 */ }
+  "message": "OK",
+  "data": {}
 }
 ```
 
-## 开发指南
+## Development Guide
 
-### 添加新功能（当前）
-1. 后端：定义 ORM → DAO → Pydantic Schema → API 端点
-2. 前端：手写 TypeScript 类型 → API 客户端 → Store → 页面
+### Adding a New Feature
+1. Backend: Define ORM → DAO → Pydantic Schema → API endpoint
+2. Frontend: Write TypeScript types → API client → Store → Page
 
-### 添加新功能（重构后）
-1. 后端：定义 Pydantic Schema → 其他同上
-2. 前端：运行 `npm run generate-types` → 直接使用生成的类型
-
-### 权限控制
+### Permission Control
 ```python
 from src.middleware.auth import check_user_permission
 
@@ -124,19 +117,18 @@ from src.middleware.auth import check_user_permission
 async def create_task(
     current_user = Depends(check_user_permission())
 ):
-    pass  # 仅登录用户可访问
+    pass  # logged-in users only
 ```
 
-## 数据库
-首次启动自动创建表。如需重置：
+## Database
+Tables are created automatically on first run. To reset:
 ```bash
 rm backend/app.db
 ```
-## 许可证
-MIT License
 
-## 贡献
-欢迎 [Issues](../../issues) 和 [PRs](../../pulls)！
+## License
 
----
-**Just Enough Stack** - 不多不少，刚刚好 🚀
+MIT
+
+## Contributing
+[Issues](../../issues) and [PRs](../../pulls) are welcome!
